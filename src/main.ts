@@ -77,6 +77,7 @@ const pacientes: Pacientes[] = [
 ];
 
 //APARTADO 1
+// (A) Lista de paciente de pediatria
 
 const obtenPacientesAsignadosAPediatria = (
   pacientes: Pacientes[]
@@ -87,3 +88,16 @@ const obtenPacientesAsignadosAPediatria = (
 };
 
 console.log(obtenPacientesAsignadosAPediatria(pacientes));
+
+//(B) Lista de pacientes de pediatria menores de 10 años.
+
+const obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios = (
+  pacientes: Pacientes[]
+): Pacientes[] => {
+  return pacientes.filter(
+    (paciente: Pacientes): boolean =>
+      paciente.especialidad === "Pediatra" && paciente.edad < 10
+  );
+};
+
+console.log(obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios(pacientes));
