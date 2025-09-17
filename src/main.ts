@@ -101,3 +101,19 @@ const obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios = (
 };
 
 console.log(obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios(pacientes));
+
+// APARTADO 2
+// Activar protocolo de URGENCIA
+
+const activarProtocoloUrgencia = (pacientes: Pacientes[]): boolean => {
+  let activarProctolo = false;
+
+  activarProctolo = pacientes.some(
+    (paciente: Pacientes): boolean =>
+      paciente.frecuenciaCardiaca > 100 && paciente.temperatura > 39
+  );
+
+  return activarProctolo;
+};
+
+console.log(activarProtocoloUrgencia(pacientes));
