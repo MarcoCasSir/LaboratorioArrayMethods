@@ -156,3 +156,41 @@ const HayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
 console.log(
   " El pediatra puede irse a casa ?:" + HayPacientesDePediatria(pacientes)
 );
+
+// ACTIVIDAD 5
+// Definir una lista con el total de pacientes segun la especialidad
+
+interface NumeroPacientesPorEspecialidad {
+  medicoDeFamilia: number;
+  pediatria: number;
+  cardiologia: number;
+}
+
+const cuentaPacientesPorEspecialidad = (
+  pacientes: Pacientes[]
+): NumeroPacientesPorEspecialidad => {
+  let sumaMedicofamilia = 0;
+  let sumaPediatra = 0;
+  let sumaCardiologia = 0;
+
+  pacientes.forEach((paciente: Pacientes): void => {
+    switch (paciente.especialidad) {
+      case "Medico de familia":
+        sumaMedicofamilia++;
+        break;
+      case "Pediatra":
+        sumaPediatra++;
+        break;
+      case "Cardiólogo":
+        sumaCardiologia++;
+        break;
+    }
+  });
+  return {
+    medicoDeFamilia: sumaMedicofamilia,
+    pediatria: sumaPediatra,
+    cardiologia: sumaCardiologia,
+  };
+};
+
+console.log(cuentaPacientesPorEspecialidad(pacientes));
