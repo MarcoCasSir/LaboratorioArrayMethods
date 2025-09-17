@@ -116,7 +116,10 @@ const activarProtocoloUrgencia = (pacientes: Pacientes[]): boolean => {
   return activarProctolo;
 };
 
-console.log(activarProtocoloUrgencia(pacientes));
+console.log(
+  " Tenemos que activar el protocolo de urgencia ? : " +
+    activarProtocoloUrgencia(pacientes)
+);
 
 // APARTADO 3
 // Reasignar los pacientes del Pediatra a Medico de Familia
@@ -136,3 +139,20 @@ const reasignaPacientesAMedicoFamilia = (
 };
 
 console.log(reasignaPacientesAMedicoFamilia(pacientes));
+
+//APARTADO 4
+// comprobar si el Pediatra tiene pacientes asignados
+
+const HayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
+  let pediatraACasa = false;
+
+  pediatraACasa = pacientes.some(
+    (paciente: Pacientes): boolean => paciente.especialidad === "Pediatra"
+  );
+
+  return pediatraACasa;
+};
+
+console.log(
+  " El pediatra puede irse a casa ?:" + HayPacientesDePediatria(pacientes)
+);
