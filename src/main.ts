@@ -166,31 +166,23 @@ interface NumeroPacientesPorEspecialidad {
   cardiologia: number;
 }
 
+const totales: NumeroPacientesPorEspecialidad = {
+  medicoDeFamilia: 0,
+  pediatria: 0,
+  cardiologia: 0,
+};
+
 const cuentaPacientesPorEspecialidad = (
   pacientes: Pacientes[]
 ): NumeroPacientesPorEspecialidad => {
-  let sumaMedicofamilia = 0;
-  let sumaPediatra = 0;
-  let sumaCardiologia = 0;
-
   pacientes.forEach((paciente: Pacientes): void => {
-    switch (paciente.especialidad) {
-      case "Medico de familia":
-        sumaMedicofamilia++;
-        break;
-      case "Pediatra":
-        sumaPediatra++;
-        break;
-      case "Cardiólogo":
-        sumaCardiologia++;
-        break;
-    }
+    if (paciente.especialidad === "Medico de familia")
+      totales.medicoDeFamilia++;
+    else if (paciente.especialidad === "Cardiólogo") totales.cardiologia++;
+    else if (paciente.especialidad === "Pediatra") totales.pediatria++;
   });
-  return {
-    medicoDeFamilia: sumaMedicofamilia,
-    pediatria: sumaPediatra,
-    cardiologia: sumaCardiologia,
-  };
+
+  return totales;
 };
 
 console.log(cuentaPacientesPorEspecialidad(pacientes));
