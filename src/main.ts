@@ -106,14 +106,10 @@ console.log(obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios(pacientes));
 // Activar protocolo de URGENCIA
 
 const activarProtocoloUrgencia = (pacientes: Pacientes[]): boolean => {
-  let activarProctolo = false;
-
-  activarProctolo = pacientes.some(
+  return pacientes.some(
     (paciente: Pacientes): boolean =>
       paciente.frecuenciaCardiaca > 100 && paciente.temperatura > 39
   );
-
-  return activarProctolo;
 };
 
 console.log(
@@ -144,13 +140,9 @@ console.log(reasignaPacientesAMedicoFamilia(pacientes));
 // comprobar si el Pediatra tiene pacientes asignados
 
 const HayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
-  let pediatraACasa = false;
-
-  pediatraACasa = pacientes.some(
+  return pacientes.some(
     (paciente: Pacientes): boolean => paciente.especialidad === "Pediatra"
   );
-
-  return pediatraACasa;
 };
 
 console.log(
@@ -165,6 +157,8 @@ interface NumeroPacientesPorEspecialidad {
   pediatria: number;
   cardiologia: number;
 }
+
+// opcion 1
 
 const totales: NumeroPacientesPorEspecialidad = {
   medicoDeFamilia: 0,
@@ -186,3 +180,21 @@ const cuentaPacientesPorEspecialidad = (
 };
 
 console.log(cuentaPacientesPorEspecialidad(pacientes));
+
+//opcion 2
+
+const map: Record<Especialidad, keyof NumeroPacientesPorEspecialidad> = {
+  "Medico de familia": "medicoDeFamilia",
+  Cardiólogo: "cardiologia",
+  Pediatra: "pediatria",
+};
+
+const cuentaPacientesPorEspecialidad2 = (pacientes: Pacientes[]) =>
+  pacientes.reduce<NumeroPacientesPorEspecialidad>(
+    (acc, p) => {
+      acc[map[p.especialidad]]++;
+      return acc;
+    },
+    { medicoDeFamilia: 0, cardiologia: 0, pediatria: 0 }
+  );
+console.log(cuentaPacientesPorEspecialidad2(pacientes));
